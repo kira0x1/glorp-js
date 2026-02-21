@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #1f1f1f;
+  background-color: #777777;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -47,22 +47,27 @@ h1 {
   margin: 0 auto;
   padding: 1.5rem;
   text-align: center;
-  /* border: 4px outset #aaa; */
 }
 
 .header {
-  width: 40%;
+  width: 42vw;
   margin: auto;
-  border: 4px outset #999;
-  box-sizing: border-box;
   padding: 10px 20px;
   background-color: #787878;
+
+  /* border */
+  border: 6px outset #999;
+  box-sizing: border-box;
+
+  /* text style */
+  color: #4a206d;
   font-size: 38px;
   font-family: serif;
-  color: #363a80;
+  text-shadow: 2px 2px 5px #535353;
+
+  /* underline */
+  text-decoration-thickness: 1px;
   text-decoration-line: underline;
-  text-decoration-thickness: 2px;
-  text-shadow: 2px 2px 5px;
 }
 
 button {
