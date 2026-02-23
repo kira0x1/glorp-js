@@ -1,8 +1,12 @@
 <script lang="ts">
   import Status from "./lib/Status.svelte";
-  import icon from "./assets/svelte.svg";
   import glorp_shiny from "./assets/images/glorp_shiny.png";
+  import GlorpBrowser from "./lib/GlorpBrowser.svelte";
 </script>
+
+<head>
+  <link rel="icon" type="image/png" href="src/assets/images/glorp_shiny.png" />
+</head>
 
 <main>
   <div class="header">Glorp</div>
@@ -12,6 +16,8 @@
     <Status text="meow" img={glorp_shiny} />
     <Status text="meow" img={glorp_shiny} />
   </div>
+
+  <GlorpBrowser />
 </main>
 
 <style>

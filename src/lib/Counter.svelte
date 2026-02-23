@@ -1,8 +1,8 @@
 <script lang="ts">
-  let count: number = $state(0)
+  let count: number = $derived(0);
   const increment = () => {
-    count += 1
-  }
+    count += 1;
+  };
 </script>
 
 <button onclick={increment}>
