@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { GlorpView } from "../types";
+  import type { BrowserAppId } from "../types";
   import GBrowserNav from "./GBrowserNav.svelte";
 
-  let currentView: GlorpView = "Glorp";
+  let currentView: BrowserAppId = "Glorp";
 </script>
 
 <div class="glorp-browser">

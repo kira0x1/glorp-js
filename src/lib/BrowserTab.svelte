@@ -1,10 +1,25 @@
 <script lang="ts">
-  let { tabName } = $props();
+  import type { BrowserAppId } from "../types";
+
+  type propTypes = {
+    tabName: string;
+    pageId: BrowserAppId;
+  };
+
+  const { tabName, pageId }: propTypes = $props();
+
+  const onTabClick = () => {
+    console.log(`clicked: ${pageId}`);
+  };
 </script>
 
-<div class="browser-tab">
+<button type="button" class="browser-tab" onclick={onTabClick}>
   <span class="tab-title">{tabName}</span>
-</div>
+</button>
+
+<!-- <div class="browser-tab">
+  <span class="tab-title">{tabName}</span>
+</div> -->
 
 <style>
   .browser-tab {
@@ -14,18 +29,24 @@
     margin-bottom: 1px;
     display: flex;
     flex-direction: row;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding-inline: unset;
+    box-sizing: initial;
   }
 
   .browser-tab:hover {
+    cursor: pointer;
     border: 4px inset #8d8d8d;
     background-color: #9e9e9e;
   }
 
   .tab-title {
-    color: #dbdbdb;
-    font-size: 1.1em;
+    font-family: "Times New Roman", Times, serif;
+    color: #eaeaea;
+    font-size: 18px;
     font-weight: 500;
-    line-height: 1.5em;
-    margin-left: 10px;
+    line-height: 1.3em;
+    margin-left: 8px;
   }
 </style>

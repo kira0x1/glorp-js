@@ -1,1 +1,1 @@
-export type GlorpView = "Glorp" | "HQ" | "House";
+export type BrowserAppId = "Glorp" | "HQ" | "House";

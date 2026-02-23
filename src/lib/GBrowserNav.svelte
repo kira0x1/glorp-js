@@ -1,13 +1,12 @@
 <script lang="ts">
-  import type { GlorpView } from "../types";
+  import type { BrowserAppId } from "../types";
   import BrowserTab from "./BrowserTab.svelte";
-
-  let currentView: GlorpView = "Glorp";
+  let currentView: BrowserAppId = "Glorp";
 </script>
 
 <div class="glorp-browser-nav">
-  <BrowserTab tabName="map" />
-  <BrowserTab tabName="about" />
+  <BrowserTab tabName="map" pageId="Glorp" />
+  <BrowserTab tabName="about" pageId="House" />
 </div>
 
 <style>
