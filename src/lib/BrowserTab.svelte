@@ -42,10 +42,9 @@
   }
 
   .tab-title {
-    font-family: "Times New Roman", Times, serif;
     color: #eaeaea;
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 17px;
+    font-weight: 400;
     line-height: 1.3em;
     margin-left: 8px;
   }
