@@ -1,25 +1,27 @@
 <script lang="ts">
+  import { getContext } from "svelte";
   import type { BrowserAppId } from "../types";
+  import type { MouseEventHandler } from "svelte/elements";
 
   type propTypes = {
     tabName: string;
     pageId: BrowserAppId;
+    onTab: MouseEventHandler<HTMLButtonElement>;
   };
 
-  const { tabName, pageId }: propTypes = $props();
+  // Props
+  const { tabName, pageId, onTab }: propTypes = $props();
 
-  const onTabClick = () => {
-    console.log(`clicked: ${pageId}`);
+  const tabContext: any = getContext("activeTab");
+
+  const isActive = () => {
+    return `browser-tab ${tabContext.tab == pageId ? "active" : ""}`;
   };
 </script>
 
-<button type="button" class="browser-tab" onclick={onTabClick}>
+<button type="button" class={isActive()} onclick={onTab}>
   <span class="tab-title">{tabName}</span>
 </button>
-
-<!-- <div class="browser-tab">
-  <span class="tab-title">{tabName}</span>
-</div> -->
 
 <style>
   .browser-tab {
@@ -33,12 +35,26 @@
     font-weight: 600;
     padding-inline: unset;
     box-sizing: initial;
+
+    &:hover:not(.active) {
+      cursor: pointer;
+      background-color: rgb(86, 155, 120);
+      border: 4px outset rgb(125, 196, 154);
+    }
   }
 
-  .browser-tab:hover {
-    cursor: pointer;
-    border: 4px inset #8d8d8d;
-    background-color: #9e9e9e;
+  .active {
+    background-color: rgb(77, 145, 111);
+    border: 4px inset rgb(104, 173, 133);
+
+    &:hover {
+      cursor: pointer;
+      border: 4px inset rgb(99, 163, 125);
+    }
+
+    .tab-title {
+      color: #c4eec8;
+    }
   }
 
   .tab-title {

@@ -1,1 +1,1 @@
-export type BrowserAppId = "Glorp" | "HQ" | "House";
+export type BrowserAppId = "none" | "map" | "about";

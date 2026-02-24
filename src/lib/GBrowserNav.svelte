@@ -1,12 +1,19 @@
 <script lang="ts">
+  import { setContext } from "svelte";
   import type { BrowserAppId } from "../types";
   import BrowserTab from "./BrowserTab.svelte";
-  let currentView: BrowserAppId = "Glorp";
+
+  let tabTracker = $state({ tab: "none" });
+  setContext("activeTab", tabTracker);
+
+  const onTab = (tabId: BrowserAppId) => {
+    tabTracker.tab = tabId;
+  };
 </script>
 
 <div class="glorp-browser-nav">
-  <BrowserTab tabName="map" pageId="Glorp" />
-  <BrowserTab tabName="about" pageId="House" />
+  <BrowserTab tabName="map" pageId="map" onTab={() => onTab("map")} />
+  <BrowserTab tabName="about" pageId="about" onTab={() => onTab("about")} />
 </div>
 
 <style>
