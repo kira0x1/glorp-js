@@ -1,10 +1,25 @@
 <script lang="ts">
+  import { setContext } from "svelte";
   import GBrowserNav from "./GBrowserNav.svelte";
+  import type { BrowserAppId } from "../types";
+  import MapApp from "./apps/MapApp.svelte";
+
+  let appTracker: { app: BrowserAppId } = $state({ app: "map" });
+  setContext("activeApp", appTracker);
+
+  const onTab = (tabId: BrowserAppId) => {
+    console.log(`ontab: ${tabId}`);
+    appTracker.app = tabId;
+  };
 </script>
 
 <div class="glorp-browser">
-  <GBrowserNav />
-  <div class="browser-app"></div>
+  <GBrowserNav {onTab} />
+  <div class="browser-app">
+    {#if appTracker.app === "map"}
+      <MapApp />
+    {/if}
+  </div>
 </div>
 
 <style>

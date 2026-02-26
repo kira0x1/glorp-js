@@ -6,20 +6,20 @@
   type propTypes = {
     tabName: string;
     pageId: BrowserAppId;
-    onTab: MouseEventHandler<HTMLButtonElement>;
+    onclick: MouseEventHandler<HTMLButtonElement>;
   };
 
   // Props
-  const { tabName, pageId, onTab }: propTypes = $props();
+  const { tabName, pageId, onclick }: propTypes = $props();
 
-  const tabContext: any = getContext("activeTab");
+  const tabContext: any = getContext("activeApp");
 
   const isActive = () => {
-    return `browser-tab ${tabContext.tab == pageId ? "active" : ""}`;
+    return `browser-tab ${tabContext.app == pageId ? "active" : ""}`;
   };
 </script>
 
-<button type="button" class={isActive()} onclick={onTab}>
+<button type="button" class={isActive()} {onclick}>
   <span class="tab-title">{tabName}</span>
 </button>
 

@@ -1,19 +1,17 @@
 <script lang="ts">
-  import { setContext } from "svelte";
   import type { BrowserAppId } from "../types";
   import BrowserTab from "./BrowserTab.svelte";
 
-  let tabTracker = $state({ tab: "none" });
-  setContext("activeTab", tabTracker);
-
-  const onTab = (tabId: BrowserAppId) => {
-    tabTracker.tab = tabId;
+  type propTypes = {
+    onTab: (tabId: BrowserAppId) => void;
   };
+
+  const { onTab }: propTypes = $props();
 </script>
 
 <div class="glorp-browser-nav">
-  <BrowserTab tabName="map" pageId="map" onTab={() => onTab("map")} />
-  <BrowserTab tabName="about" pageId="about" onTab={() => onTab("about")} />
+  <BrowserTab tabName="map" pageId="map" onclick={() => onTab("map")} />
+  <BrowserTab tabName="about" pageId="about" onclick={() => onTab("about")} />
 </div>
 
 <style>
