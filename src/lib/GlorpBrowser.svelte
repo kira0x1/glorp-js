@@ -44,7 +44,7 @@
     flex-shrink: 1;
     box-sizing: border-box;
     border: 5px inset #888;
-    background-color: #999;
+    background-color: #777;
     box-shadow: inset 0px 0px 18px 2px rgb(107, 107, 107);
   }
 </style>
