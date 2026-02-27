@@ -14,7 +14,7 @@
       return;
     }
 
-    setCanvasSize(c, c.clientWidth / 2, c.clientHeight / 2);
+    setCanvasSize(c);
 
     ctx.fillStyle = "white";
     ctx.strokeStyle = "white";
@@ -23,7 +23,7 @@
 
     const path = new Path2D();
     path.moveTo(100, 100);
-    path.arcTo(-50, 10, 120, 20, 30);
+    path.arcTo(-50, 20, 120, 20, 40);
 
     ctx.strokeStyle = "blue";
     ctx.stroke(path);
