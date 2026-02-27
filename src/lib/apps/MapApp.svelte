@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { getContext, onMount } from "svelte";
+  import { onMount } from "svelte";
+  import { setCanvasSize } from "../../canvasUtil";
 
   onMount(() => {
     let c: HTMLCanvasElement = document.getElementById(
@@ -12,6 +13,8 @@
       console.warn("canvas-ctx in mapapp undefined");
       return;
     }
+
+    setCanvasSize(c, c.clientWidth / 2, c.clientHeight / 2);
 
     ctx.fillStyle = "white";
     ctx.strokeStyle = "white";
