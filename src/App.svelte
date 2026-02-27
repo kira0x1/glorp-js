@@ -24,7 +24,9 @@
   .status-grid {
     gap: 10px;
     margin: 1em auto;
-    width: 42vw;
+    width: 35%;
+    max-width: 600px;
+    min-width: 300px;
     display: flex;
     flex-wrap: wrap;
   }

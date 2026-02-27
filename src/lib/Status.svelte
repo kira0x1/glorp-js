@@ -17,7 +17,7 @@
     border: 6px inset #838383;
 
     /* (header width / status count ) - gap / 2 */
-    width: calc((42vw / 2) - 5px);
+    width: calc(50% - 5px);
 
     height: 58px;
     flex-direction: row;

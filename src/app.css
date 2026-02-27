@@ -27,8 +27,6 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
 h1 {
@@ -50,7 +48,10 @@ h1 {
 }
 
 .header {
-  width: 42vw;
+  max-width: 600px;
+  min-width: 300px;
+  width: 35%;
+
   margin: auto;
   padding: 10px 20px;
   background-color: #787878;
