@@ -3,8 +3,9 @@
   import GBrowserNav from "./GBrowserNav.svelte";
   import type { BrowserAppId } from "../types";
   import MapApp from "./apps/MapApp.svelte";
+  import AnimApp from "./apps/AnimApp.svelte";
 
-  let appTracker: { app: BrowserAppId } = $state({ app: "map" });
+  let appTracker: { app: BrowserAppId } = $state({ app: "anim" });
   setContext("activeApp", appTracker);
 
   const onTab = (tabId: BrowserAppId) => {
@@ -18,6 +19,8 @@
   <div class="browser-app">
     {#if appTracker.app === "map"}
       <MapApp />
+    {:else if appTracker.app === "anim"}
+      <AnimApp />
     {/if}
   </div>
 </div>

@@ -12,6 +12,7 @@
 <div class="glorp-browser-nav">
   <BrowserTab tabName="map" pageId="map" onclick={() => onTab("map")} />
   <BrowserTab tabName="about" pageId="about" onclick={() => onTab("about")} />
+  <BrowserTab tabName="anim" pageId="anim" onclick={() => onTab("anim")} />
 </div>
 
 <style>
