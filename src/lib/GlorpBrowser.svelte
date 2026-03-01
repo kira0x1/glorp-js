@@ -4,6 +4,7 @@
   import type { BrowserAppId } from "../types";
   import MapApp from "./apps/MapApp.svelte";
   import AnimApp from "./apps/AnimApp.svelte";
+  import AFrame from "./apps/aFrame.svelte";
 
   let appTracker: { app: BrowserAppId } = $state({ app: "anim" });
   setContext("activeApp", appTracker);
@@ -21,6 +22,8 @@
       <MapApp />
     {:else if appTracker.app === "anim"}
       <AnimApp />
+    {:else if appTracker.app === "aframe"}
+      <AFrame />
     {/if}
   </div>
 </div>

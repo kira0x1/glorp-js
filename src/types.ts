@@ -1,1 +1,1 @@
-export type BrowserAppId = "none" | "map" | "about" | "anim";
+export type BrowserAppId = "none" | "map" | "about" | "anim" | "aframe";
