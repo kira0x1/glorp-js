@@ -5,8 +5,9 @@
   import MapApp from "./apps/MapApp.svelte";
   import AnimApp from "./apps/AnimApp.svelte";
   import AFrame from "./apps/aFrame.svelte";
+  import WardrobeApp from "./apps/WardrobeApp.svelte";
 
-  let appTracker: { app: BrowserAppId } = $state({ app: "anim" });
+  let appTracker: { app: BrowserAppId } = $state({ app: "wardrobe" });
   setContext("activeApp", appTracker);
 
   const onTab = (tabId: BrowserAppId) => {
@@ -24,6 +25,8 @@
       <AnimApp />
     {:else if appTracker.app === "aframe"}
       <AFrame />
+    {:else if appTracker.app === "wardrobe"}
+      <WardrobeApp />
     {/if}
   </div>
 </div>

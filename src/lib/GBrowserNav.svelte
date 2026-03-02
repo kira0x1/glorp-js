@@ -14,9 +14,9 @@
   <BrowserTab tabName="about" pageId="about" onclick={() => onTab("about")} />
   <BrowserTab tabName="anim" pageId="anim" onclick={() => onTab("anim")} />
   <BrowserTab
-    tabName="aframe"
-    pageId="aframe"
-    onclick={() => onTab("aframe")}
+    tabName="wardrobe"
+    pageId="wardrobe"
+    onclick={() => onTab("wardrobe")}
   />
 </div>
 
