@@ -4,4 +4,5 @@ export type BrowserAppId =
   | "about"
   | "anim"
   | "aframe"
-  | "wardrobe";
+  | "wardrobe"
+  | "stage";

@@ -6,12 +6,12 @@
   import AnimApp from "./apps/AnimApp.svelte";
   import AFrame from "./apps/aFrame.svelte";
   import WardrobeApp from "./apps/WardrobeApp.svelte";
+  import StageApp from "./apps/StageApp.svelte";
 
-  let appTracker: { app: BrowserAppId } = $state({ app: "wardrobe" });
+  let appTracker: { app: BrowserAppId } = $state({ app: "stage" });
   setContext("activeApp", appTracker);
 
   const onTab = (tabId: BrowserAppId) => {
-    console.log(`ontab: ${tabId}`);
     appTracker.app = tabId;
   };
 </script>
@@ -27,6 +27,8 @@
       <AFrame />
     {:else if appTracker.app === "wardrobe"}
       <WardrobeApp />
+    {:else if appTracker.app === "stage"}
+      <StageApp />
     {/if}
   </div>
 </div>
