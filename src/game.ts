@@ -1,7 +1,65 @@
 import * as Stage from "stage-js";
 import image from "./assets/images/example.svg";
 
-export async function InitAtlas() {
+let scoreVal = 0;
+let scale = 2;
+
+const calcScale = () => {
+  let nextScale = scale == 2 ? Math.random() + 10.5 : 2;
+  scale = nextScale;
+  return nextScale;
+};
+export function mountStage(canvas: HTMLCanvasElement) {
+  const app = Stage.mount({ canvas });
+
+  // Set view box
+  app.viewbox(200, 200, "contain");
+  const score = createScore(app);
+
+  score.tick((elapsed, now, last) => updateScore(score, elapsed, now, last));
+
+  score.setTimeout(() => {
+    score.touch();
+    scoreVal++;
+    score.value(scoreVal);
+    console.log("meow");
+  }, 10);
+
+  score.on("click", function (point) {
+    let scale = calcScale();
+    this.tween().ease("bounce").pin({
+      scaleX: scale,
+      scaleY: scale,
+    });
+  });
+
+  return app;
+}
+
+function updateScore(
+  score: Stage.Monotype,
+  elapsed: number,
+  now: number,
+  last: number,
+) {
+  score.value(scoreVal);
+  // score.value(scoreVal);
+}
+
+function createScore(app: Stage.Root) {
+  // Create a scores component and append it to app
+  const score = Stage.monotype("example:digit");
+  score.spacing(-1);
+  score.pin("scale", 1.5);
+  score.appendTo(app);
+
+  // Align box to center
+  score.value(scoreVal);
+
+  return score;
+}
+
+export async function initAtlas() {
   await Stage.atlas({
     name: "example",
     image: { src: image, ratio: 1 },

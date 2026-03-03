@@ -3,6 +3,5 @@ export type BrowserAppId =
   | "map"
   | "about"
   | "anim"
-  | "aframe"
   | "wardrobe"
   | "stage";

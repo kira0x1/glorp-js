@@ -12,7 +12,6 @@
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^6.2.1",
     "@tsconfig/svelte": "^5.0.6",
-    "@types/aframe": "^1.2.9",
     "@types/node": "^24.10.1",
     "svelte": "^5.45.2",
     "svelte-check": "^4.3.4",
@@ -20,7 +19,6 @@
     "vite": "^7.3.1"
   },
   "dependencies": {
-    "aframe": "^1.7.1",
     "animejs": "^4.3.6",
     "stage-js": "^1.0.1"
   }

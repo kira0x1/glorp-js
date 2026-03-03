@@ -4,7 +4,6 @@
   import type { BrowserAppId } from "../types";
   import MapApp from "./apps/MapApp.svelte";
   import AnimApp from "./apps/AnimApp.svelte";
-  import AFrame from "./apps/aFrame.svelte";
   import WardrobeApp from "./apps/WardrobeApp.svelte";
   import StageApp from "./apps/StageApp.svelte";
 
@@ -23,8 +22,6 @@
       <MapApp />
     {:else if appTracker.app === "anim"}
       <AnimApp />
-    {:else if appTracker.app === "aframe"}
-      <AFrame />
     {:else if appTracker.app === "wardrobe"}
       <WardrobeApp />
     {:else if appTracker.app === "stage"}
