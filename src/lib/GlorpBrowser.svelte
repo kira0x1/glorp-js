@@ -6,6 +6,7 @@
   import AnimApp from "./apps/AnimApp.svelte";
   import WardrobeApp from "./apps/WardrobeApp.svelte";
   import StageApp from "./apps/StageApp.svelte";
+  import RemoteApp from "./apps/RemoteApp.svelte";
 
   let appTracker: { app: BrowserAppId } = $state({ app: "stage" });
   setContext("activeApp", appTracker);
@@ -26,6 +27,8 @@
       <WardrobeApp />
     {:else if appTracker.app === "stage"}
       <StageApp />
+    {:else if appTracker.app === "remote"}
+      <RemoteApp />
     {/if}
   </div>
 </div>

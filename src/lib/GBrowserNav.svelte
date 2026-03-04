@@ -19,6 +19,11 @@
     pageId="wardrobe"
     onclick={() => onTab("wardrobe")}
   />
+  <BrowserTab
+    tabName="remote"
+    pageId="remote"
+    onclick={() => onTab("remote")}
+  />
 </div>
 
 <style>

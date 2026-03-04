@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "animejs": "^4.3.6",
+    "pixi.js": "^8.16.0",
     "stage-js": "^1.0.1"
   }
 }
