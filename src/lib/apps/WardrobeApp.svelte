@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { knobs, otherKnobs } from "./Wardrobe";
   import { onMount } from "svelte";
   import { setCanvasSize } from "../../canvasUtil";
 
@@ -16,6 +17,9 @@
     // Background
     ctx.fillStyle = "white";
     ctx.strokeStyle = "white";
+
+    ctx.save();
+
     ctx.rect(0.5, 0.5, canvas.width - 1, canvas.height - 1);
     ctx.fill();
     // -------------
@@ -24,7 +28,6 @@
     const wdPath = new Path2D();
     ctx.fillStyle = "brown";
     wdPath.rect(5, 5, 90, 144);
-    ctx.strokeStyle = "brown";
     ctx.strokeStyle = "black";
     ctx.stroke(wdPath);
     ctx.fill(wdPath, "nonzero");
@@ -40,77 +43,9 @@
     ctx.fill(innerWdPath, "nonzero");
     // -----------------------------------------
 
+    ctx.restore();
+
     // #region knobs
-
-    const knobs = [
-      {
-        el: new Path2D(),
-        pos: {
-          x: 42,
-          y: 30,
-          r: 2.5,
-        },
-        draw() {
-          this.el.arc(this.pos.x, this.pos.y, this.pos.r, 0, Math.PI * 2);
-        },
-        hit(ctx: CanvasRenderingContext2D, x: number, y: number) {
-          ctx.beginPath();
-          ctx.arc(this.pos.x, this.pos.y, 3, 0, Math.PI * 2);
-          return ctx.isPointInPath(x, y);
-        },
-      },
-      {
-        el: new Path2D(),
-        pos: {
-          x: 58,
-          y: 30,
-          r: 2.5,
-        },
-        draw() {
-          this.el.arc(this.pos.x, this.pos.y, this.pos.r, 0, Math.PI * 2);
-        },
-        hit(ctx: CanvasRenderingContext2D, x: number, y: number) {
-          ctx.beginPath();
-          ctx.arc(this.pos.x, this.pos.y, this.pos.r, 0, Math.PI * 2);
-          return ctx.isPointInPath(x, y);
-        },
-      },
-      {
-        el: new Path2D(),
-        pos: {
-          x: 58,
-          y: 85,
-          r: 2.5,
-        },
-        draw() {
-          this.el.arc(this.pos.x, this.pos.y, this.pos.r, 0, Math.PI * 2);
-        },
-        hit(ctx: CanvasRenderingContext2D, x: number, y: number) {
-          ctx.beginPath();
-          ctx.arc(this.pos.x, this.pos.y, 3, 0, Math.PI * 2);
-          return ctx.isPointInPath(x, y);
-        },
-      },
-      {
-        el: new Path2D(),
-        pos: {
-          x: 42,
-          y: 85,
-          r: 2.5,
-        },
-        draw() {
-          this.el.arc(this.pos.x, this.pos.y, this.pos.r, 0, Math.PI * 2);
-        },
-        hit(ctx: CanvasRenderingContext2D, x: number, y: number) {
-          ctx.beginPath();
-          ctx.arc(this.pos.x, this.pos.y, this.pos.r, 0, Math.PI * 2);
-          return ctx.isPointInPath(x, y);
-        },
-      },
-    ];
-
-    ctx.fillStyle = "white";
-    ctx.strokeStyle = "black";
 
     for (const e of knobs) {
       e.draw();
@@ -118,15 +53,30 @@
       ctx.fill(e.el);
     }
 
+    ctx.save();
+
+    for (const e of otherKnobs) {
+      ctx.strokeStyle = e.strokeColor;
+      ctx.fillStyle = e.fillColor;
+
+      e.draw();
+      ctx.lineWidth = e.thickness;
+      ctx.stroke(e.path);
+      ctx.fill(e.path);
+    }
+
+    ctx.restore();
+
     canvas.addEventListener("mousemove", (e) => {
       const rect = canvas.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
+
       canvas.style.cursor = ctx.isPointInPath(x, y) ? "pointer" : "default";
 
       let hit = false;
-
       ctx.strokeStyle = "black";
+
       knobs.forEach((c) => {
         if (c.hit(ctx, x, y)) {
           ctx.strokeStyle = "magenta";
@@ -141,6 +91,19 @@
       });
 
       canvas.style.cursor = hit ? "pointer" : "default";
+    });
+
+    canvas.addEventListener("click", (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const knobHit = knobs.find((c) => c.hit(ctx, x, y));
+      if (knobHit) {
+        console.dir(`knob hit: `, knobHit.pos);
+      } else {
+        console.log(`no knob hit`);
+      }
     });
 
     // #endregion
