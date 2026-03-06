@@ -8,7 +8,7 @@
   import StageApp from "./apps/StageApp.svelte";
   import RemoteApp from "./apps/RemoteApp.svelte";
 
-  let appTracker: { app: BrowserAppId } = $state({ app: "stage" });
+  let appTracker: { app: BrowserAppId } = $state({ app: "wardrobe" });
   setContext("activeApp", appTracker);
 
   const onTab = (tabId: BrowserAppId) => {

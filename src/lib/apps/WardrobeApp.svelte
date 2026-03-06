@@ -98,7 +98,10 @@
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
 
-      const knobHit = knobs.find((c) => c.hit(ctx, x, y));
+      // const knobHit = knobs.find((c) => c.hit(ctx, x, y));
+
+      const knobHit = otherKnobs.find((c) => c.hit(ctx, x, y));
+
       if (knobHit) {
         console.dir(`knob hit: `, knobHit.pos);
       } else {
