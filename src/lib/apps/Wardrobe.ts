@@ -31,9 +31,7 @@ export class PathEl {
   }
 
   hit(ctx: CanvasRenderingContext2D, x: number, y: number) {
-    const prevThickness = ctx.lineWidth;
     ctx.beginPath();
-    ctx.lineWidth = this.thickness;
     ctx.arc(
       this.pos.x,
       this.pos.y,
@@ -43,9 +41,9 @@ export class PathEl {
     );
 
     const res = ctx.isPointInPath(x, y);
-    ctx.lineWidth = prevThickness;
     return res;
   }
+
   draw() {
     const { x, y } = this.pos;
     this.path.arc(x, y, this.radius, 0, Math.PI * 2);
@@ -55,6 +53,7 @@ export class PathEl {
 const k1 = new PathEl(150, 100, 30, 12, "red", "cyan");
 const k2 = new PathEl(220, 100, 10, 6, "blue", "yellow");
 const k3 = new PathEl(120, 120, 15, 5);
+
 k3.fillColor = "transparent";
 
 export const otherKnobs = [k1, k2, k3];
