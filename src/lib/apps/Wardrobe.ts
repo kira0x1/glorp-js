@@ -40,7 +40,10 @@ export class PathEl {
 const k1 = new PathEl(150, 100, 30, 12, "red", "cyan");
 const k2 = new PathEl(220, 100, 10, 6, "blue", "yellow");
 
-export const otherKnobs = [k1, k2];
+const k3 = new PathEl(120, 120, 15, 5);
+k3.fillColor = "transparent";
+
+export const otherKnobs = [k1, k2, k3];
 
 export const knobs = [
   {
