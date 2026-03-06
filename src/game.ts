@@ -9,6 +9,7 @@ const calcScale = () => {
   scale = nextScale;
   return nextScale;
 };
+
 export function mountStage(canvas: HTMLCanvasElement) {
   const app = Stage.mount({ canvas });
 
@@ -22,7 +23,6 @@ export function mountStage(canvas: HTMLCanvasElement) {
     score.touch();
     scoreVal++;
     score.value(scoreVal);
-    console.log("meow");
   }, 10);
 
   score.on("click", function (point) {

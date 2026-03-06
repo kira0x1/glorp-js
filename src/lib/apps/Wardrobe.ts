@@ -44,9 +44,93 @@ export class PathEl {
     return res;
   }
 
-  draw() {
+  clear(ctx: CanvasRenderingContext2D) {
     const { x, y } = this.pos;
+  }
+
+  draw(ctx: CanvasRenderingContext2D) {
+    const { x, y } = this.pos;
+
+    const prevFillColor = ctx.fillStyle;
+    const prevStrokeColor = ctx.strokeStyle;
+
+    ctx.strokeStyle = this.strokeColor;
+    ctx.fillStyle = this.fillColor;
+
     this.path.arc(x, y, this.radius, 0, Math.PI * 2);
+
+    ctx.lineWidth = this.thickness;
+    ctx.stroke(this.path);
+    ctx.fill(this.path);
+
+    ctx.strokeStyle = prevStrokeColor;
+    ctx.fillStyle = prevFillColor;
+  }
+
+  drawSelection(ctx: CanvasRenderingContext2D) {
+    const { x, y } = this.pos;
+
+    const prevFillColor = ctx.fillStyle;
+    const prevStrokeColor = ctx.strokeStyle;
+
+    ctx.strokeStyle = this.strokeColor;
+    ctx.fillStyle = this.fillColor;
+
+    ctx.beginPath();
+    const selectedPath = new Path2D();
+    selectedPath.arc(x, y, this.radius * 2, 0, Math.PI * 2);
+    // this.path.arc(x, y, this.radius * 2, 0, Math.PI * 2);
+
+    ctx.lineWidth = this.thickness;
+    ctx.stroke(selectedPath);
+    ctx.fill(selectedPath);
+    ctx.lineWidth = 2;
+
+    ctx.strokeStyle = prevStrokeColor;
+    ctx.fillStyle = prevFillColor;
+  }
+}
+
+export class WardrobePath extends PathEl {
+  draw(ctx: CanvasRenderingContext2D) {
+    ctx.lineWidth = 1;
+
+    // Background
+    ctx.fillStyle = "white";
+    ctx.strokeStyle = "white";
+
+    ctx.rect(0.5, 0.5, ctx.canvas.width - 1, ctx.canvas.height - 1);
+    ctx.fill();
+    // -------------
+
+    // Wardrobe
+    const wdPath = new Path2D();
+    ctx.fillStyle = "brown";
+    wdPath.rect(5, 5, 90, 144);
+    ctx.strokeStyle = "black";
+    ctx.stroke(wdPath);
+    ctx.fill(wdPath, "nonzero");
+
+    const innerWdPath = new Path2D();
+
+    innerWdPath.rect(50, 5, 2, 144);
+    innerWdPath.rect(5, 45, 90, 2);
+    ctx.strokeStyle = "#555";
+    ctx.fillStyle = "#666";
+
+    ctx.stroke(innerWdPath);
+    ctx.fill(innerWdPath, "nonzero");
+    // -----------------------------------------
+  }
+
+  drawKnobs(ctx: CanvasRenderingContext2D) {
+    ctx.restore();
+    ctx.lineWidth = 1;
+
+    for (const k of knobs) {
+      k.draw(ctx);
+      // ctx.stroke(k.el);
+    }
   }
 }
 
@@ -58,7 +142,15 @@ k3.fillColor = "transparent";
 
 export const otherKnobs = [k1, k2, k3];
 
-export const knobs = [
+const c1 = new PathEl(42, 30, 2.5);
+const c2 = new PathEl(58, 30, 2.5);
+const c3 = new PathEl(58, 85, 2.5);
+const c4 = new PathEl(42, 85, 2.5);
+
+export const knobs = [c1, c2, c3, c4, ...otherKnobs];
+
+/*
+
   {
     el: new Path2D(),
     pos: {
@@ -123,4 +215,5 @@ export const knobs = [
       return ctx.isPointInPath(x, y);
     },
   },
-];
+
+*/
