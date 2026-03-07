@@ -73,18 +73,21 @@
       let hit = false;
       ctx.strokeStyle = "black";
 
-      knobs.forEach((c) => {
+      for (const c of knobs) {
+        if (
+          selectionState.hasSelection &&
+          selectionState.selection?.equals(c)
+        ) {
+          continue;
+        }
+
         if (c.hit(ctx, x, y)) {
-          // ctx.strokeStyle = "magenta";
-          // ctx.stroke(c.el);
-          // ctx.fill(c.el);
+          c.draw(ctx, true);
           hit = true;
         } else {
-          // ctx.strokeStyle = "black";
-          // ctx.stroke(c.el);
-          // ctx.fill(c.el);
+          c.draw(ctx);
         }
-      });
+      }
 
       canvas.style.cursor = hit ? "pointer" : "default";
     });

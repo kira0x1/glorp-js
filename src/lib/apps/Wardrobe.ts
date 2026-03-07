@@ -44,17 +44,23 @@ export class PathEl {
     return res;
   }
 
+  hover() {}
+
+  equals(other: PathEl) {
+    return this.pos == other.pos;
+  }
+
   clear(ctx: CanvasRenderingContext2D) {
     const { x, y } = this.pos;
   }
 
-  draw(ctx: CanvasRenderingContext2D) {
+  draw(ctx: CanvasRenderingContext2D, hover: boolean = false) {
     const { x, y } = this.pos;
 
     const prevFillColor = ctx.fillStyle;
     const prevStrokeColor = ctx.strokeStyle;
 
-    ctx.strokeStyle = this.strokeColor;
+    ctx.strokeStyle = hover ? "magenta" : this.strokeColor;
     ctx.fillStyle = this.fillColor;
 
     this.path.arc(x, y, this.radius, 0, Math.PI * 2);
