@@ -13,17 +13,12 @@
   <BrowserTab tabName="map" pageId="map" onclick={() => onTab("map")} />
   <BrowserTab tabName="about" pageId="about" onclick={() => onTab("about")} />
   <BrowserTab tabName="anim" pageId="anim" onclick={() => onTab("anim")} />
-  <BrowserTab tabName="stage" pageId="stage" onclick={() => onTab("stage")} />
   <BrowserTab
     tabName="wardrobe"
     pageId="wardrobe"
     onclick={() => onTab("wardrobe")}
   />
-  <BrowserTab
-    tabName="remote"
-    pageId="remote"
-    onclick={() => onTab("remote")}
-  />
+  <BrowserTab tabName="pixi" pageId="pixi" onclick={() => onTab("pixi")} />
 </div>
 
 <style>
